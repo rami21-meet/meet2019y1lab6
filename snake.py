@@ -11,7 +11,7 @@ turtle.penup()
 
 SQUARE_SIZE = 20
 START_LENGTH = 7
-TIME_STEP = 100
+TIME_STEP = 70
 
 #initialize lists
 pos_list = []
@@ -51,12 +51,16 @@ for loop in range(6):
     snake.goto(x_pos,y_pos) #move snake to new (x,y)
     #now draw the new snake part on the screan (hint, you have a function to do this
     new_stamp()
- def remove_tail(): 
+def remove_tail():
      old_stamp = stamp_list.pop(0) #last piece of tail
      snake.clearstamp(old_stamp) #erase last piece of the tail
      pos_list.pop(0) #remove last piece of tail's position
 
 snake.direction = 'up'
+UP_EDGE = 250
+DOWN_EDGE = -250
+RIGHT_EDGE = 400
+LEFT_EDGE = -400
 
 def up():
     snake.direction='up' #change direction to up
@@ -68,22 +72,19 @@ def up():
 snake.direction = 'down'
 
 def down():
-    snake.direction]'down'
-    move_snake()
+    snake.direction='down'
     print('you pressed the down key!')
 
 snake.direction = 'right'
 
 def right():
     snake.direction='Right'
-    move_snake()
     print('you pressed the right key!')
 
 snake.direction = 'left'
 
 def left():
     snake.direction='Left'
-    move_snake()
     print('you pressed the left key!')
 
 turtle.onkeypress(up, 'Up')
@@ -106,19 +107,60 @@ def move_snake():
         print('you moved down!')
 
     #write the conditions for RIGHT and LEFT on your own
-    if snake.direction=='right':
+    if snake.direction=='Right':
         snake.goto(x_pos + SQUARE_SIZE, y_pos)
         print('you moved right')
-    elif snake.direction=='left':
+    elif snake.direction=='Left':
         snake.goto(x_pos-SQUARE_SIZE, y_pos)
         print('you moved left')
+    turtle.ontimer(move_snake,TIME_STEP)
+  
     #make the snake stamp a new square on the screan hint-- use a single function
     new_stamp()
     
     ##### SPECIAL PLACE ITS FOR PART 5
     
     #remove the last piece of the snake
-    remove_tail() 
+    remove_tail()
+
+    #add new lines to the end of the function, grab position of snake
+    new_pos = snake.pos()
+    new_x_pos = new_pos[0]
+    new_y_pos = new_pos[1]
+
+    #the next three line check if the snake is hitting the right edge
+    if new_x_pos >=RIGHT_EDGE:
+        print('you hit the right edge! game over!')
+        quit()
+    if new_x_pos <=LEFT_EDGE:
+        print('you hit the left edge! game over!')
+        quit()
+    if new_y_pos >=UP_EDGE:
+        print('you hit the up edge! game over!')
+        quit()
+    if new_y_pos <=DOWN_EDGE:
+        print('you hit the down edge! game over!')
+        quit()
+move_snake()
+
+turtle.listen()
+
+turtle.register_shape('trash.gif')
+
+food = turtle.clone()
+food.shape('trash.gif')
+
+food_pos = [(100,100), (-100,100), (-100,-100), (100,-100)]
+food_stamps = []
+for this_food_pos in food_pos :
+    food.goto(this_food_pos)
+    pasta=food.stamp()
+    food_stamps.append(pasta)
+    
+ 
+
+    
+
 
 
 
