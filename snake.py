@@ -1,7 +1,7 @@
 import turtle
 import random #we will need this later
 turtle.color('red')
-turtle.bgcolor('black')
+turtle.bgcolor('green')
 turtle.tracer(1,0) #this helps the turtle to move smoothly
 
 SIZE_X=800
@@ -22,8 +22,7 @@ food_stamps = []
 
 #set up positions (x,y) of boxes that make up the snakei
 snake = turtle.clone()
-snake.shape('square')
-
+snake.shape('circle')
 
 #hide the turtle object (it is an arrow - we dont need to see it)
 turtle.hideturtle()
