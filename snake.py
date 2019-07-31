@@ -1,6 +1,7 @@
 import turtle
 import random #we will need this later
-
+turtle.color('red')
+turtle.bgcolor('black')
 turtle.tracer(1,0) #this helps the turtle to move smoothly
 
 SIZE_X=800
@@ -94,6 +95,7 @@ turtle.onkeypress(left, 'Left')
 
 turtle.listen()
 food=turtle.clone()
+food.hideturtle()
 def make_food():
     #the screen positions from-SIZE/2 but we need the make food pieces only apper on game squares so we cut up the game board into multiplies of SQUARE_SIZE
     min_x=-int(SIZE_X/2/SQUARE_SIZE)+1
@@ -127,6 +129,12 @@ def move_snake():
         snake.goto(x_pos-SQUARE_SIZE, y_pos)
         print('you moved left') 
   
+    
+
+    if snake.pos() in pos_list[:-1]:
+        print(pos_list, snake.pos())
+        quit()
+
     #make the snake stamp a new square on the screan hint-- use a single function
     new_stamp()
     
@@ -168,9 +176,7 @@ def move_snake():
     
     if len(food_stamps) <= 6 :
         make_food()
-    if snake.pos() in pos_list[:-1]:
-        print(pos_list, snake.pos())
-        quit()
+
     turtle.ontimer(move_snake,TIME_STEP)
 move_snake()
 
