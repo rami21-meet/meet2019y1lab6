@@ -20,7 +20,7 @@ stamp_list = []
 food_pos = []
 food_stamps = []
 
-#set up positions (x,y) of boxes that make up the snakei
+#set up positions (x,y) of boxes that make up the snake
 snake = turtle.clone()
 snake.shape('circle')
 
