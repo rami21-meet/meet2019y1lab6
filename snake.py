@@ -1,7 +1,7 @@
 import turtle
 import random #we will need this later
-turtle.color('red')
-turtle.bgcolor('green')
+turtle.color('blue')
+turtle.bgcolor('black')
 turtle.tracer(1,0) #this helps the turtle to move smoothly
 
 SIZE_X=800
